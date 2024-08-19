@@ -5,37 +5,38 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [isPoppedOut, setIsPoppedOut] = useState(false)
+  const [isBouncing, setIsBouncing] = useState(false)
 
   const handleImageClick = () => {
     setCount((count) => count + 1)
-    setIsPoppedOut(true)
-    setTimeout(() => setIsPoppedOut(false), 200) // Reset after animation
+    setIsBouncing(true)
+
+    // Remove the bounce class after the animation ends
+    setTimeout(() => {
+      setIsBouncing(false)
+    }, 500)  // match the duration of the animation
   }
 
   return (
     <>
       <div className="card">
-      <p style={{ fontSize: '50px'}}>
+        <p style={{ fontSize: '50px'}}>
           {count} bananas
         </p>
         <br></br>
         <img
           onClick={handleImageClick}
           src="/banana.png"
-          className={isPoppedOut ? 'pop-out' : 'pop-in'}
           height="300"
+          className={isBouncing ? 'bounce' : ''}
         />
         <br></br>
         <br></br>
-        
         {
           count >= 5 && (
-            
             <div style={{paddingTop: '15px'}}>
               <button>Unlock store</button>
             </div>
-          
           )
         }
       </div>
