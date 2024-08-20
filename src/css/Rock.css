@@ -2,6 +2,9 @@
     display: inline-block;
     transition: transform 0.3s ease-out; /* Faster transition */
     transform-origin: center bottom; /* Set the origin for rotation */
+    -moz-user-select: none;
+-webkit-user-select: none;
+user-select: none;
   }
   
   .bounce {
