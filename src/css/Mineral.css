@@ -1,4 +1,4 @@
-.rock-image {
+.mineral-image {
     display: inline-block;
     transition: transform 0.3s ease-out; /* Faster transition */
     transform-origin: center bottom; /* Set the origin for rotation */
