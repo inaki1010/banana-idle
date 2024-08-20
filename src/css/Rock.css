@@ -1,0 +1,25 @@
+.rock-image {
+    display: inline-block;
+    transition: transform 0.3s ease-out; /* Faster transition */
+    transform-origin: center bottom; /* Set the origin for rotation */
+  }
+  
+  .bounce {
+    animation: bounce 0.3s ease-out; /* Quicker, more responsive animation */
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    40% {
+      transform: translateY(var(--bounce-height, -20px)) rotate(var(--rotate-angle, 10deg));
+    }
+    60% {
+      transform: translateY(var(--bounce-height-half, -10px)) rotate(var(--rotate-angle-half, -5deg));
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+  
