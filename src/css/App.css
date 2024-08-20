@@ -2,6 +2,10 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* Adjusts the space between the cards */
+  margin: 20px;
 }
 
 .card {
