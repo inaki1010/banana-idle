@@ -4,12 +4,20 @@ import '../css/Rock.css'
 function Rock({ onClick }) {
   const rockRef = useRef(null)
 
-  const handleClick = () => {
-    // Generate random values for bounce and wobble
-    const randomBounce = `${Math.random() * -20 - 10}px`
-    const randomBounceHalf = `${Math.random() * -10 - 5}px`
-    const randomWobble = `${Math.random() * 10 - 5}deg`
-    const randomWobbleHalf = `${Math.random() * 5 - 2.5}deg`
+  const handleClick = (event) => {
+    const rect = rockRef.current.getBoundingClientRect()
+    const clickX = event.clientX - rect.left // X position within the image
+    const clickY = event.clientY - rect.top // Y position within the image
+
+    // Normalize click position to a range of -1 to 1
+    const normalizedX = (clickX / rect.width) * 2 - 1
+    const normalizedY = (clickY / rect.height) * 2 - 1
+
+    // Adjust the random values based on click position
+    const randomBounce = `${normalizedY * -50}px`
+    const randomBounceHalf = `${normalizedY * -25}px`
+    const randomWobble = `${normalizedX * 45}deg`
+    const randomWobbleHalf = `${normalizedX * 30}deg`
 
     // Apply these random values as CSS variables
     rockRef.current.style.setProperty('--bounce-height', randomBounce)
