@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import './css/App.css';
-import Mineral from './components/Mineral';
-import Rock from './components/Rock';
-import UnlockNextButton from './components/UnlockNextButton';
-import Sidebar from './components/SideBar.jsx';
+import { useState } from "react";
+import "./css/App.css";
+import Mineral from "./components/Mineral";
+import Rock from "./components/Rock";
+import UnlockNextButton from "./components/UnlockNextButton";
+import Sidebar from "./components/SideBar.jsx";
 
 function App() {
   const [rockCount, setRockCount] = useState(0);
@@ -13,13 +13,13 @@ function App() {
   const [ironUnlocked, setIronUnlocked] = useState(false);
 
   const handleRockClick = () => {
-    setRockCount(rockCount + 1);
+    setRockCount(rockCount + 1000);
   };
 
   const handleBuyCoal = () => {
     if (rockCount >= 10) {
       setRockCount(rockCount - 10);
-      setCoalCount(coalCount + 1);
+      setCoalCount(coalCount + 100);
     }
   };
 
@@ -40,14 +40,14 @@ function App() {
 
   const shopItems = [
     {
-      name: 'Coal',
+      name: "Coal",
       cost: 10,
       currencyCount: rockCount,
       onBuy: handleBuyCoal,
       isVisible: coalUnlocked,
     },
     {
-      name: 'Iron',
+      name: "Iron",
       cost: 10,
       currencyCount: coalCount,
       onBuy: handleBuyIron,
@@ -57,30 +57,74 @@ function App() {
 
   return (
     <div className="app-container">
-      <Sidebar items={shopItems.filter(item => item.isVisible)} />
+      <Sidebar items={shopItems.filter((item) => item.isVisible)} />
+
       <div className="main-content">
+        {/*Rock container*/}
         <div className="card">
-          <p className="counter">{rockCount} rocks</p>
-          <Rock onClick={handleRockClick} imageUrl={"/rock.svg"} altText={"rock"} />
+          <p className="counter">
+            <span
+              className={`counter-content ${
+                rockCount.toString().length > 4 ? "small-text" : ""
+              }`}
+            >
+              {rockCount} rocks
+            </span>
+          </p>
+
+          {/*Coal unlock button*/}
+          <Rock
+            onClick={handleRockClick}
+            imageUrl={"/rock.svg"}
+            altText={"rock"}
+          />
           {!coalUnlocked && rockCount >= 5 && (
             <UnlockNextButton onClick={handleUnlockCoal} next="Unlock Coal" />
           )}
         </div>
 
+        {/*Coal container*/}
         {coalUnlocked && (
           <div className="card">
-            <p className="counter">{coalCount} coal</p>
-            <Mineral count={coalCount} imageUrl={"/coal.svg"} altText={"coal"} />
+            <p className="counter">
+              <span
+                className={`counter-content ${
+                  coalCount.toString().length > 4 ? "small-text" : ""
+                }`}
+              >
+                {coalCount} coal
+              </span>
+            </p>
+            <Mineral
+              count={coalCount}
+              imageUrl={"/coal.svg"}
+              altText={"coal"}
+            />
+
+            {/*Unlock iron button*/}
             {!ironUnlocked && coalCount >= 5 && (
               <UnlockNextButton onClick={handleUnlockIron} next="Unlock Iron" />
             )}
           </div>
         )}
 
+        {/*Iron container*/}
         {ironUnlocked && (
           <div className="card">
-            <p className="counter">{ironCount} iron</p>
-            <Mineral count={ironCount} imageUrl={"/iron.svg"} altText={"iron"} />
+            <p className="counter">
+              <span
+                className={`counter-content ${
+                  ironCount.toString().length > 4 ? "small-text" : ""
+                }`}
+              >
+                {ironCount} iron
+              </span>
+            </p>
+            <Mineral
+              count={ironCount}
+              imageUrl={"/iron.svg"}
+              altText={"iron"}
+            />
           </div>
         )}
       </div>

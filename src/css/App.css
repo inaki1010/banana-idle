@@ -1,20 +1,80 @@
-.container {
+.app-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.main-content {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around; /* Adjusts the space between the cards */
-  margin: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px; /* Reduced space between cards */
 }
 
 .card {
-  padding: 2em;
+  flex: 1 1 200px; /* Reduced minimum width to 200px */
+  max-width: 200px; /* Ensure cards don't get too large */
+  padding: 1.5em; /* Slightly reduce padding */
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px solid transparent; /* Visualize each grid item */
 }
 
 .counter {
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Ensures any overflow text is hidden */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensures the text container spans the full width */
+  transform-origin: left center; /* Keeps the scale effect aligned properly */
+}
+
+.card .counter-content {
+  display: inline-block;
+  transform: scale(1); /* Default scale */
+  transform-origin: center; /* Center the scaling */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card .counter-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter-content {
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 2rem;
+  transition: font-size 0.3s ease;
+}
+
+.counter-content.small-text {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex: 1 1 calc(50% - 15px); /* On smaller screens, each card takes up half the width */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex: 1 1 calc(100% - 15px); /* On very small screens, each card takes up the full width */
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
