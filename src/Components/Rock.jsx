@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import '../css/Mineral.css';
+import { useRef } from "react";
+import "../css/Rock.css";
 
 function Rock({ onClick, imageUrl, altText }) {
   const rockRef = useRef(null);
@@ -20,15 +20,15 @@ function Rock({ onClick, imageUrl, altText }) {
     const randomWobbleHalf = `${normalizedX * 30}deg`;
 
     // Apply these random values as CSS variables
-    rockRef.current.style.setProperty('--bounce-height', randomBounce);
-    rockRef.current.style.setProperty('--bounce-height-half', randomBounceHalf);
-    rockRef.current.style.setProperty('--rotate-angle', randomWobble);
-    rockRef.current.style.setProperty('--rotate-angle-half', randomWobbleHalf);
+    rockRef.current.style.setProperty("--bounce-height", randomBounce);
+    rockRef.current.style.setProperty("--bounce-height-half", randomBounceHalf);
+    rockRef.current.style.setProperty("--rotate-angle", randomWobble);
+    rockRef.current.style.setProperty("--rotate-angle-half", randomWobbleHalf);
 
     // Re-trigger the animation
-    rockRef.current.classList.remove('bounce');
+    rockRef.current.classList.remove("bounce");
     void rockRef.current.offsetWidth; // Trigger reflow
-    rockRef.current.classList.add('bounce');
+    rockRef.current.classList.add("bounce");
 
     onClick();
   };
@@ -38,7 +38,7 @@ function Rock({ onClick, imageUrl, altText }) {
       ref={rockRef}
       onClick={handleClick}
       src={imageUrl}
-      height="150"
+      height="300"
       alt={altText}
       className="rock-image"
     />

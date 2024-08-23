@@ -1,7 +1,14 @@
-import React from 'react';
-import PurchaseButton from './PurchaseButton';
+import React from "react";
+import PurchaseButton from "./PurchaseButton";
 
-function ShopItem({ name, cost, currencyCount, onBuy }) {
+function ShopItem({
+  name,
+  cost,
+  currencyCount,
+  onBuy,
+  quantity,
+  productionrate,
+}) {
   return (
     <div className="shop-item">
       <p>{name}</p>
@@ -10,6 +17,8 @@ function ShopItem({ name, cost, currencyCount, onBuy }) {
         cost={cost}
         currencyCount={currencyCount}
         onBuy={onBuy}
+        quantity={quantity}
+        productionrate={productionrate}
       />
     </div>
   );
